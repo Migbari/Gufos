@@ -11,14 +11,17 @@ namespace backend.Controllers {
     // Definimos nossa rota do controller e dizemos que é um controlller de API
     [Route ("api/[controller]")]
     [ApiController]
-    public class EventoController : ControllerBase {
+    public class EventoController : ControllerBase 
+    {
         GufosContext _contexto = new GufosContext ();
-
         // GET: api/Evento
-        [HttpGet]
-
         // async executa os métodos sem precisar que um outro tenha finalizado
         // Task = tarefa, actionResult = resultado da ação
+        /// <summary>
+        /// Pegamos todos os eventos cadastrados
+        /// </summary>
+        /// <returns>Lista de eventos</returns>
+        [HttpGet]
         public async Task<ActionResult<List<Evento>>> Get () // list chama toda a tabela
         {   
             // Include("") = Adiciona efetivamente a árvore de objetos relacionados

@@ -56,7 +56,7 @@ namespace backend.Controllers {
             return categoria;
 
         }
-
+        
         [HttpPut ("{id}")]
         public async Task<ActionResult> Put (int id, Categoria categoria) {
             // Se o Id do objeto não existir ele retorna badrequest 400
