@@ -9,7 +9,7 @@ namespace backend.Models
     {
         public Localizacao()
         {
-            Evento = new HashSet<Evento>();
+            Evento = new HashSet<Evento>(); // HashSet???
         }
 
         [Key]
@@ -28,6 +28,6 @@ namespace backend.Models
         public string Endereco { get; set; }
 
         [InverseProperty("Localizacao")]
-        public virtual ICollection<Evento> Evento { get; set; }
+        public virtual ICollection<Evento> Evento { get; set; } // ICollection?
     }
 }

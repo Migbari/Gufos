@@ -31,7 +31,7 @@ namespace backend.Models
         [ForeignKey(nameof(CategoriaId))]
         [InverseProperty("Evento")]
         public virtual Categoria Categoria { get; set; }
-        [ForeignKey(nameof(LocalizacaoId))]
+        [ForeignKey(nameof(LocalizacaoId))] //nameof??
         [InverseProperty("Evento")]
         public virtual Localizacao Localizacao { get; set; }
         [InverseProperty("Evento")]
