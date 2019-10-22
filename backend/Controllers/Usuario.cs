@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,12 +9,12 @@ namespace backend.Controllers {
     // Definimos nossa rota do controller e dizemos que é um controlller de API
     [Route ("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase {
+    [Authorize] // Para autenticar todos os métodos 
+    public class UsuarioController : ControllerBase { 
         GufosContext _contexto = new GufosContext ();
-
         // GET: api/Usuario
-        [HttpGet]
-
+        [HttpGet] 
+        // [Authorize] Para autenticar um médoto em espefífico
         // async executa os métodos sem precisar que um outro tenha finalizado
         // Task = tarefa, actionResult = resultado da ação
         public async Task<ActionResult<List<Usuario>>> Get () // list chama toda a tabela

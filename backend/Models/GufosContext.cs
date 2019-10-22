@@ -14,7 +14,6 @@ namespace backend.Models
             : base(options)
         {
         }
-
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Evento> Evento { get; set; }
         public virtual DbSet<Localizacao> Localizacao { get; set; }

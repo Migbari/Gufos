@@ -62,16 +62,16 @@ namespace backend {
                 opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             ); // oq esta sendo feito 
 
-            // Configuramos o Swagger
+            // Configuramos o Swagger 
             services.AddSwaggerGen (c => {
                 c.SwaggerDoc ("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-
                 // Definimos o caminho e arquivo temporário de documentação
                 // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 // var xmlPath = ConfigurationPath.Combine(AppContext.BaseDirectory, xmlFile);
                 // c.IncludeXmlComments(xmlPath);
             });
-
+            
+            // Configuramos o JWT
             services.AddAuthentication (JwtBearerDefaults.AuthenticationScheme).AddJwtBearer (
                 options => {
                     options.TokenValidationParameters = new TokenValidationParameters {
@@ -102,6 +102,9 @@ namespace backend {
             app.UseSwaggerUI (c => {
                 c.SwaggerEndpoint ("/swagger/v1/swagger.json", "API V1");
             });
+
+            // Usamos efetivamente a autenticação
+            app.UseAuthentication();
 
             app.UseHttpsRedirection ();
 
