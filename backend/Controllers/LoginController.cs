@@ -17,21 +17,25 @@ namespace backend.Controllers
     {   
         // Chamamos nosso contexto da vase de dados
         GufosContext _context = new GufosContext();
-
+        
         // Definimos uma variável para percorrer nossos métodos com as configurações obitidas no appsettings.json
         private IConfiguration _config;
-
+        
+        // O método contrutor não possui void / Por padrão não tem retorno / Deve ter o mesmo nome da classe
         // Definimos um método construtor para poder acessar estas configs 
+        // Joga o valor do parametro dentro da variável _config
         public LoginController(IConfiguration config){
-            _config = config;
+            _config = config; 
         }
 
-        // Chamamos nosso métoo para validar o usuário na aplicação
-
-        private Usuario ValidaUsuario(Usuario login){
-            var usuario = _context.Usuario.FirstOrDefault(
+        // Criamos nosso método para validar o usuário na aplicação
+        // login - possui as informações passadas na tela
+        // var usuario = _context.Usuario.FirstOrDefault - Traz o primeiro dado se a condição do where/lambda for satisfeita
+        // u => u.Email == login.Email && u.Senha == login.Senha ); - Expressão lambda que representa o "WHERE do SQL"
+        private Usuario ValidaUsuario(Usuario login){ 
+            var usuario = _context.Usuario.FirstOrDefault( 
             u => u.Email == login.Email && u.Senha == login.Senha );
-
+            
             if(usuario != null){
                 usuario = login;
             }
