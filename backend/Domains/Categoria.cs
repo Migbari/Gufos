@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace backend.Models
+namespace backend.Domains
 {
     public partial class Categoria
     {
@@ -11,7 +11,6 @@ namespace backend.Models
         {
             Evento = new HashSet<Evento>();
         }
-
         [Key]
         [Column("Categoria_id")]
         public int CategoriaId { get; set; }

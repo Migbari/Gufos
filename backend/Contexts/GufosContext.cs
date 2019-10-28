@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace backend.Models
+namespace backend.Domains
 {
     public partial class GufosContext : DbContext
     {
         public GufosContext()
         {
         }
-
         public GufosContext(DbContextOptions<GufosContext> options)
             : base(options)
         {
@@ -21,11 +21,16 @@ namespace backend.Models
         public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
 
+        internal Task Lister()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-MB5G0BQ\\SQLEXPRESS; Database=Gufos; User Id=sa; Password=132");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-MB5G0BQ\\SQLEXPRESS; Database=Gufos; user Id=sa; Password=132;");
             }
         }
 

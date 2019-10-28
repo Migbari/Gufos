@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using backend.Models;
+using backend.Domains;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -67,7 +67,7 @@ namespace backend.Controllers {
             _contexto.Entry (tipousuario).State = EntityState.Modified;
 
             try {
-                await _contexto.SaveChangesAsync ();
+            await _contexto.SaveChangesAsync ();
             } catch (DbUpdateConcurrencyException) {
 
                 // Verificamos se o objeto inserido realmente existe no banco

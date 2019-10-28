@@ -35,7 +35,8 @@ using System.Text;
 // dotnet ef
 
 // Código que criará o nosso Contexto da Base de Dados e nossos Models
-// dotnet ef  dbcontext scaffold "Server=DESKTOP-MB5G0BQ\SQLEXPRESS; Database=Gufos; User Id=sa; Password=132" Microsoft.EntityFrameworkCore.SqlServer -o Models -d
+// dotnet ef dbcontext scaffold "Server=DESKTOP-MB5G0BQ\SQLEXPRESS; Database=Gufos; user Id=sa; Password=132;" Microsoft.EntityFrameworkCore.SqlServer -o Domains -d
+// dotnet ef dbcontext scaffold "Server=DESKTOP-D7G0OR5\SQLEXPRESS; Database=Gufos_b; user Id=sa; Password=132" Microsoft.EntityFrameworkCore.SqlServer -o Domains -d
 
 // SWAGGER - Documentação 
 
@@ -52,15 +53,13 @@ namespace backend {
         public Startup (IConfiguration configuration) {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
-            //Configuramos como os objetos relacionados aparecerão nos retornos
+            // Configuramos como os objetos relacionados aparecerão nos retornos
             services.AddControllersWithViews ().AddNewtonsoftJson (
                 opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            ); // oq esta sendo feito 
+            ); // 
 
             // Configuramos o Swagger 
             services.AddSwaggerGen (c => {
@@ -86,14 +85,11 @@ namespace backend {
                 });
         }
 
-        //Configuramos o JWT
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment ()) {
                 app.UseDeveloperExceptionPage ();
             }
-
             // Usamos efetivamente o SWAGGER
             app.UseSwagger ();
             // Especificamos o EndPoint na aplicação

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace backend.Models
+namespace backend.Domains
 {
     public partial class Evento
     {
@@ -31,7 +31,7 @@ namespace backend.Models
         [ForeignKey(nameof(CategoriaId))]
         [InverseProperty("Evento")]
         public virtual Categoria Categoria { get; set; }
-        [ForeignKey(nameof(LocalizacaoId))] //nameof??
+        [ForeignKey(nameof(LocalizacaoId))]
         [InverseProperty("Evento")]
         public virtual Localizacao Localizacao { get; set; }
         [InverseProperty("Evento")]

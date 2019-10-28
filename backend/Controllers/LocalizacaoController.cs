@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using backend.Models;
+using backend.Domains;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,9 +13,6 @@ namespace backend.Controllers {
 
         // GET: api/Localizacao
         [HttpGet]
-
-        // async executa os métodos sem precisar que um outro tenha finalizado
-        // Task = tarefa, actionResult = resultado da ação
         public async Task<ActionResult<List<Localizacao>>> Get () // list chama toda a tabela
         {
             var localizacoes = await _contexto.Localizacao.ToListAsync ();
@@ -52,9 +49,7 @@ namespace backend.Controllers {
             } catch (DbUpdateConcurrencyException) {
                 throw; // Mostra erro automaticamente // Mostra a Exception
             }
-
             return localizacao;
-
         }
 
         [HttpPut ("{id}")]

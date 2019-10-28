@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using backend.Models;
+using backend.Domains;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,72 +9,67 @@ namespace backend.Controllers {
     // Definimos nossa rota do controller e dizemos que é um controlller de API
     [Route ("api/[controller]")]
     [ApiController]
-    public class PresencaController : ControllerBase {
+    [Authorize] // Para autenticar todos os métodos 
+    public class UsuarioController : ControllerBase {
         GufosContext _contexto = new GufosContext ();
-
-        // GET: api/Presenca
+        // GET: api/Usuario
         [HttpGet]
-
-        // async executa os métodos sem precisar que um outro tenha finalizado
-        // Task = tarefa, actionResult = resultado da ação
-        public async Task<ActionResult<List<Presenca>>> Get () // list chama toda a tabela
+        public async Task<ActionResult<List<Usuario>>> Get () // list chama toda a tabela
         {
-            var presencas = await _contexto.Presenca.ToListAsync ();
+            var usuarios = await _contexto.Usuario.ToListAsync ();
 
-            if (presencas == null) {
+            if (usuarios == null) {
                 return NotFound ();
             }
-            return presencas;
+            return usuarios;
         }
 
-        // GET: api/Presenca/2
+        // GET: api/Usuario/2
         [HttpGet ("{id}")]
-        public async Task<ActionResult<Presenca>> Get (int id) {
+        public async Task<ActionResult<Usuario>> Get (int id) {
             // FindAsync = procura algo específico no banco
             // await 
-            var presenca = await _contexto.Presenca.FindAsync (id);
+            var usuario = await _contexto.Usuario.FindAsync (id);
 
-            if (presenca == null) {
+            if (usuario == null) {
                 return NotFound ();
             }
-            return presenca;
-
+            return usuario;
         }
 
-        // POST api/Presenca
+        // POST api/Usuario
         [HttpPost]
-        public async Task<ActionResult<Presenca>> POST (Presenca presenca) {
+        [Authorize]
+        public async Task<ActionResult<Usuario>> POST (Usuario usuario) {
 
             try {
                 // Tratamos contra ataques de SQL Injection
-                await _contexto.AddAsync (presenca);
+                await _contexto.AddAsync (usuario);
                 // Salvamos efetivamente o nosso objeto no banco de dados
                 await _contexto.SaveChangesAsync ();
             } catch (DbUpdateConcurrencyException) {
                 throw; // Mostra erro automaticamente // Mostra a Exception
             }
-
-            return presenca;
-
+            return usuario;
         }
 
         [HttpPut ("{id}")]
-        public async Task<ActionResult> Put (int id, Presenca presenca) {
+        public async Task<ActionResult> Put (int id, Usuario usuario) {
             // Se o Id do objeto não existir ele retorna badrequest 400
-            if (id != presenca.PresencaId) {
+            if (id != usuario.UsuarioId) {
                 return BadRequest (); // Badrequest usuario errou
             }
             // Comparamos os atributos que foram modificados através do EF
-            _contexto.Entry (presenca).State = EntityState.Modified;
+            _contexto.Entry (usuario).State = EntityState.Modified;
 
             try {
                 await _contexto.SaveChangesAsync ();
             } catch (DbUpdateConcurrencyException) {
 
                 // Verificamos se o objeto inserido realmente existe no banco
-                var presenca_valido = await _contexto.Presenca.FindAsync (id);
+                var usuario_valido = await _contexto.Usuario.FindAsync (id);
 
-                if (presenca_valido == null) {
+                if (usuario_valido == null) {
                     return NotFound ();
                 } else {
                     throw;
@@ -82,21 +78,20 @@ namespace backend.Controllers {
             // NoContent = Retorna 204 // 204 no content - sem conteudo
             return NoContent ();
         }
+        // DELETE api/usuario/id
+        [HttpDelete ("{id}")]
+        [Authorize]
+        public async Task<ActionResult<Usuario>> Delete (int id) {
 
-        // DELETE api/presenca/id
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Presenca>> Delete(int id){
-
-            var presenca = await _contexto.Presenca.FindAsync(id);
-            if (presenca == null){
-                return NotFound(); // notfound - não existe
+            var usuario = await _contexto.Usuario.FindAsync (id);
+            if (usuario == null) {
+                return NotFound (); // notfound - não existe
             }
 
-            _contexto.Presenca.Remove(presenca);
-            await _contexto.SaveChangesAsync();
+            _contexto.Usuario.Remove (usuario);
+            await _contexto.SaveChangesAsync ();
 
-            return presenca;
+            return usuario;
         }
-        
     }
 }

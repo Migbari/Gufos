@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace backend.Models
+namespace backend.Domains
 {
     public partial class Localizacao
     {
         public Localizacao()
         {
-            Evento = new HashSet<Evento>(); // HashSet???
+            Evento = new HashSet<Evento>();
         }
 
         [Key]
@@ -28,6 +28,6 @@ namespace backend.Models
         public string Endereco { get; set; }
 
         [InverseProperty("Localizacao")]
-        public virtual ICollection<Evento> Evento { get; set; } // ICollection?
+        public virtual ICollection<Evento> Evento { get; set; }
     }
 }
