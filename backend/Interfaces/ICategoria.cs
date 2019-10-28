@@ -5,9 +5,9 @@ using backend.Domains;
 namespace backend.Interfaces {
     public interface ICategoria { 
         Task<List<Categoria>> Listar (); 
-        Task<List<Categoria>> BuscarPorId (int id); 
-        Task<List<Categoria>> Salvar (Categoria categoria); 
-        Task<List<Categoria>> Alterar (Categoria categoria); 
-        Task<List<Categoria>> Excluir (Categoria categoria);
+        Task<Categoria> BuscarPorId (int id); 
+        Task<Categoria> Salvar (Categoria categoria); 
+        Task<Categoria> Alterar (Categoria categoria); 
+        Task<Categoria> Excluir (Categoria categoria);
     }
 }

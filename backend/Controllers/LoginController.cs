@@ -24,7 +24,7 @@ namespace backend.Controllers {
         public LoginController (IConfiguration config) {
             _config = config;
         }
-        //Chamamos nosso método para validar o usuário na aplicação
+        //Chamamos nosso método para validar o usuário da aplicação
         private Usuario ValidaUsuario (LoginViewModel login) {
             var usuario = _context.Usuario.FirstOrDefault (
                 u => u.Email == login.Email && u.Senha == login.Senha
@@ -46,7 +46,8 @@ namespace backend.Controllers {
 
             return response;
         }
-
+  
+         // Verificar abaixo
         private object GenerateJSONWebToken(object user)
         {
             throw new NotImplementedException();
@@ -80,7 +81,6 @@ namespace backend.Controllers {
             );
             return new JwtSecurityTokenHandler ().WriteToken (token);
         }
-
         // Usamos essa anotação para ignorar a autenticação nesse método
         [AllowAnonymous]
         [HttpPost]
@@ -100,7 +100,6 @@ namespace backend.Controllers {
         {
             throw new NotImplementedException();
         }
-
         private object ValidaUsuario(Usuario login)
         {
             throw new NotImplementedException();

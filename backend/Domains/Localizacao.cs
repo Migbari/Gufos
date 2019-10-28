@@ -11,7 +11,6 @@ namespace backend.Domains
         {
             Evento = new HashSet<Evento>();
         }
-
         [Key]
         [Column("Localizacao_id")]
         public int LocalizacaoId { get; set; }

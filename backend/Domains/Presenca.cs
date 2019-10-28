@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace backend.Domains
-{
-    public partial class Presenca
-    {
+namespace backend.Domains {
+    public partial class Presenca {
         [Key]
-        [Column("Presenca_id")]
+        [Column ("Presenca_id")]
         public int PresencaId { get; set; }
+
         [Required]
-        [Column("Presemca_status")]
-        [StringLength(255)]
+        [Column ("Presemca_status")]
+        [StringLength (255)]
         public string PresemcaStatus { get; set; }
-        [Column("Evento_id")]
+
+        [Column ("Evento_id")]
         public int? EventoId { get; set; }
-        [Column("Usuario_id")]
+
+        [Column ("Usuario_id")]
         public int? UsuarioId { get; set; }
 
-        [ForeignKey(nameof(EventoId))]
-        [InverseProperty("Presenca")]
+        [ForeignKey (nameof (EventoId))]
+        [InverseProperty ("Presenca")]
         public virtual Evento Evento { get; set; }
-        [ForeignKey(nameof(UsuarioId))]
-        [InverseProperty("Presenca")]
+
+        [ForeignKey (nameof (UsuarioId))]
+        [InverseProperty ("Presenca")]
         public virtual Usuario Usuario { get; set; }
     }
 }

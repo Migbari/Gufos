@@ -12,7 +12,6 @@ namespace backend.Controllers {
     public class CategoriaController : ControllerBase {
         // GufosContext _repositorio = new GufosContext ();
         CategoriaRepository _repositorio = new CategoriaRepository();
-    
         // GET: api/Categoria
         [HttpGet]
         public async Task<ActionResult<List<Categoria>>> Get () // list chama toda a tabela
@@ -24,20 +23,18 @@ namespace backend.Controllers {
             }
             return categorias;
         }
-
         // GET: api/Categoria/2
         [HttpGet ("{id}")]
         public async Task<ActionResult<Categoria>> Get (int id) {
             // FindAsync = procura algo específico no banco
             // await 
-            var categoria = await _repositorio.BuscarPorID(id);
+            var categoria = await _repositorio.BuscarPorId(id);
 
             if (categoria == null) {
                 return NotFound ();
             }
             return NotFound();
         }
-
         // POST api/Categoria
         [HttpPost]
         public async Task<ActionResult<Categoria>> POST (Categoria categoria) {
@@ -50,7 +47,6 @@ namespace backend.Controllers {
                 return BadRequest();
             }
         }
-
         [HttpPut ("{id}")]
         public async Task<ActionResult> Put (int id, Categoria categoria) {
             // Se o Id do objeto não existir ele retorna badrequest 400
@@ -63,7 +59,7 @@ namespace backend.Controllers {
             } catch (DbUpdateConcurrencyException) {
 
                 // Verificamos se o objeto inserido realmente existe no banco
-                var categoria_valido = await _repositorio.BuscarPorID(id);
+                var categoria_valido = await _repositorio.BuscarPorId(id);
 
                 if (categoria_valido == null) {
                     return NotFound ();
@@ -79,7 +75,7 @@ namespace backend.Controllers {
         [HttpDelete ("{id}")]
         public async Task<ActionResult<Categoria>> Delete (int id) {
 
-            var categoria = await _repositorio.BuscarPorID(id);
+            var categoria = await _repositorio.BuscarPorId(id);
             if (categoria == null) {
                 return NotFound (); // notfound - não existe
             }

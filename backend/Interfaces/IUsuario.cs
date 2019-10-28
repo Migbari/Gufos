@@ -7,9 +7,9 @@ namespace backend.Interfaces
     public interface IUsuario
     {
         Task<List<Usuario>> Listar (); 
-        Task<List<Usuario>> BuscarPorId (int id); 
-        Task<List<Usuario>> Salvar (Usuario usuario); 
-        Task<List<Usuario>> Alterar (Usuario usuario); 
-        Task<List<Usuario>> Excluir (Usuario usuario);
+        Task<Usuario> BuscarPorId (int id); 
+        Task<Usuario> Salvar (Usuario usuario); 
+        Task<Usuario> Alterar (Usuario usuario); 
+        Task<Usuario> Excluir (Usuario usuario);
     }
 }
