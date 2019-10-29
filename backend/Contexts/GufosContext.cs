@@ -33,7 +33,6 @@ namespace backend.Domains
                 optionsBuilder.UseSqlServer("Server=DESKTOP-MB5G0BQ\\SQLEXPRESS; Database=Gufos; user Id=sa; Password=132;");
             }
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Categoria>(entity =>

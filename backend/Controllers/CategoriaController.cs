@@ -27,13 +27,12 @@ namespace backend.Controllers {
         [HttpGet ("{id}")]
         public async Task<ActionResult<Categoria>> Get (int id) {
             // FindAsync = procura algo específico no banco
-            // await 
             var categoria = await _repositorio.BuscarPorId(id);
 
             if (categoria == null) {
-                return NotFound ();
+                return NotFound();
             }
-            return NotFound();
+            return categoria;
         }
         // POST api/Categoria
         [HttpPost]
@@ -53,7 +52,6 @@ namespace backend.Controllers {
             if (id != categoria.CategoriaId) {
                 return BadRequest (); // Badrequest usuario errou
             }
-
             try {
                 await _repositorio.Alterar (categoria);
             } catch (DbUpdateConcurrencyException) {
@@ -70,7 +68,6 @@ namespace backend.Controllers {
             // NoContent = Retorna 204 // 204 no content - sem conteudo
             return NoContent ();
         }
-
         // DELETE api/categoria/id
         [HttpDelete ("{id}")]
         public async Task<ActionResult<Categoria>> Delete (int id) {
@@ -79,11 +76,9 @@ namespace backend.Controllers {
             if (categoria == null) {
                 return NotFound (); // notfound - não existe
             }
-
             categoria = await _repositorio.Excluir(categoria);
 
             return categoria;
         }
-
     }
 }

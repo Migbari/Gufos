@@ -13,54 +13,40 @@ using Microsoft.IdentityModel.Tokens;
 namespace backend.Controllers {
     [Route ("api/[controller]")]
     [ApiController]
-<<<<<<< HEAD
     public class LoginController : ControllerBase {
-        // Chamamos nosso contexto da base de dados
+        // Chamamos nosso contexto da vase de dados
         GufosContext _context = new GufosContext ();
 
-=======
-    public class LoginController : ControllerBase
-    {   
-        // Chamamos nosso contexto da vase de dados
-        GufosContext _context = new GufosContext();
-        
->>>>>>> 93a5b2c18e1f5fcd75dcb61e2795963f126cb3de
         // Definimos uma variável para percorrer nossos métodos com as configurações obitidas no appsettings.json
         private IConfiguration _config;
-        
+
         // O método contrutor não possui void / Por padrão não tem retorno / Deve ter o mesmo nome da classe
         // Definimos um método construtor para poder acessar estas configs 
-<<<<<<< HEAD
+        // Joga o valor do parametro dentro da variável _config
         public LoginController (IConfiguration config) {
             _config = config;
-=======
-        // Joga o valor do parametro dentro da variável _config
-        public LoginController(IConfiguration config){
-            _config = config; 
->>>>>>> 93a5b2c18e1f5fcd75dcb61e2795963f126cb3de
         }
         //Chamamos nosso método para validar o usuário da aplicação
         private Usuario ValidaUsuario (LoginViewModel login) {
             var usuario = _context.Usuario.FirstOrDefault (
-                u => u.Email == login.Email && u.Senha == login.Senha
-            );
-
-<<<<<<< HEAD
-=======
-        // Criamos nosso método para validar o usuário na aplicação
+                u => u.Email == login.Email && u.Senha == login.Senha);
+            return usuario;
+        }
+        // Criamos nosso método para validar o usuário da aplicação
         // login - possui as informações passadas na tela
         // var usuario = _context.Usuario.FirstOrDefault - Traz o primeiro dado se a condição do where/lambda for satisfeita
         // u => u.Email == login.Email && u.Senha == login.Senha ); - Expressão lambda que representa o "WHERE do SQL"
-        private Usuario ValidaUsuario(Usuario login){ 
-            var usuario = _context.Usuario.FirstOrDefault( 
-            u => u.Email == login.Email && u.Senha == login.Senha );
-            
-            if(usuario != null){
+      
+        /*   private Usuario ValidaUsuario (Usuario login) {
+            var usuario = _context.Usuario.FirstOrDefault (
+                u => u.Email == login.Email && u.Senha == login.Senha);
+
+            if (usuario != null) {
                 usuario = login;
             }
->>>>>>> 93a5b2c18e1f5fcd75dcb61e2795963f126cb3de
             return usuario;
-        }
+        }    */
+
         // Usamos essa anotação para ignorar a autenticação neste método, já que é ele quem fará isso  
         [AllowAnonymous]
         [HttpPost]
@@ -75,15 +61,13 @@ namespace backend.Controllers {
 
             return response;
         }
-  
-         // Verificar abaixo
-        private object GenerateJSONWebToken(object user)
-        {
-            throw new NotImplementedException();
+
+        // Verificar abaixo
+        private object GenerateJSONWebToken (object user) {
+            throw new NotImplementedException ();
         }
-        private object AuthenticateUser(LoginViewModel login)
-        {
-            throw new NotImplementedException();
+        private object AuthenticateUser (LoginViewModel login) {
+            throw new NotImplementedException ();
         }
 
         // Geramos o Token
@@ -125,13 +109,13 @@ namespace backend.Controllers {
             return response;
         }
 
-        private object GerarToken(object user)
-        {
-            throw new NotImplementedException();
-        }
         private object ValidaUsuario(Usuario login)
         {
             throw new NotImplementedException();
+        }
+
+        private object GerarToken (object user) {
+            throw new NotImplementedException ();
         }
     }
 }
