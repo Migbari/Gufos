@@ -12,6 +12,7 @@ namespace backend.Controllers {
     public class CategoriaController : ControllerBase {
         // GufosContext _repositorio = new GufosContext ();
         CategoriaRepository _repositorio = new CategoriaRepository();
+        
         // GET: api/Categoria
         [HttpGet]
         public async Task<ActionResult<List<Categoria>>> Get () // list chama toda a tabela

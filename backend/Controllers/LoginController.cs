@@ -13,18 +13,18 @@ using Microsoft.IdentityModel.Tokens;
 namespace backend.Controllers {
     [Route ("api/[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase {
+    public class LoginController : ControllerBase
+    {   
         // Chamamos nosso contexto da vase de dados
-        GufosContext _context = new GufosContext ();
-
+        GufosContext _context = new GufosContext();
         // Definimos uma variável para percorrer nossos métodos com as configurações obitidas no appsettings.json
         private IConfiguration _config;
 
         // O método contrutor não possui void / Por padrão não tem retorno / Deve ter o mesmo nome da classe
         // Definimos um método construtor para poder acessar estas configs 
         // Joga o valor do parametro dentro da variável _config
-        public LoginController (IConfiguration config) {
-            _config = config;
+        public LoginController(IConfiguration config){
+            _config = config; 
         }
         //Chamamos nosso método para validar o usuário da aplicação
         private Usuario ValidaUsuario (LoginViewModel login) {

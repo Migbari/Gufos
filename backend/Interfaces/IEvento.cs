@@ -4,6 +4,7 @@ using backend.Domains;
 
 namespace backend.Interfaces {
     public interface IEvento {
+        
         Task<List<Evento>> Listar ();
         Task<Evento> BuscarPorId (int id);
         Task<Evento> Salvar (Evento evento);
