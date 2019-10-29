@@ -11,6 +11,7 @@ namespace backend.Controllers {
     [ApiController]
     public class CategoriaController : ControllerBase {
         // GufosContext _repositorio = new GufosContext ();
+        // novo comentario
         CategoriaRepository _repositorio = new CategoriaRepository();
         
         // GET: api/Categoria
