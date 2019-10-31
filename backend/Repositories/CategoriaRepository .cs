@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Repositories {
     public class CategoriaRepository : ICategoria {
         public async Task<Categoria> Alterar (Categoria categoria) {
-
             using (GufosContext _context = new GufosContext ()) {
                 _context.Entry (categoria).State = EntityState.Modified;
                 await _context.SaveChangesAsync ();

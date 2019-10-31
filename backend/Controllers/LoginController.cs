@@ -19,7 +19,6 @@ namespace backend.Controllers {
         GufosContext _context = new GufosContext();
         // Definimos uma variável para percorrer nossos métodos com as configurações obitidas no appsettings.json
         private IConfiguration _config;
-
         // O método contrutor não possui void / Por padrão não tem retorno / Deve ter o mesmo nome da classe
         // Definimos um método construtor para poder acessar estas configs 
         // Joga o valor do parametro dentro da variável _config
@@ -46,7 +45,6 @@ namespace backend.Controllers {
             }
             return usuario;
         }    */
-
         // Usamos essa anotação para ignorar a autenticação neste método, já que é ele quem fará isso  
         [AllowAnonymous]
         [HttpPost]
@@ -58,10 +56,8 @@ namespace backend.Controllers {
                 var tokenString = GenerateJSONWebToken (user);
                 response = Ok (new { token = tokenString });
             }
-
             return response;
         }
-
         // Verificar abaixo
         private object GenerateJSONWebToken (object user) {
             throw new NotImplementedException ();
@@ -69,7 +65,6 @@ namespace backend.Controllers {
         private object AuthenticateUser (LoginViewModel login) {
             throw new NotImplementedException ();
         }
-
         // Geramos o Token
         private string GerarToken (Usuario userInfo) {
             // Definimos a criptografia do nosso Token
@@ -83,7 +78,6 @@ namespace backend.Controllers {
                 new Claim (JwtRegisteredClaimNames.Email, userInfo.Nome),
                 new Claim (JwtRegisteredClaimNames.Jti, Guid.NewGuid ().ToString ())
             };
-
             //Configuramos nosso Token e seu tempo de vida
             var token = new JwtSecurityToken (
                 _config["Jwt:Issuer"],
@@ -108,12 +102,10 @@ namespace backend.Controllers {
             }
             return response;
         }
-
         private object ValidaUsuario(Usuario login)
         {
             throw new NotImplementedException();
         }
-
         private object GerarToken (object user) {
             throw new NotImplementedException ();
         }

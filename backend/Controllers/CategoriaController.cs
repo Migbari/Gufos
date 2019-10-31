@@ -40,7 +40,7 @@ namespace backend.Controllers {
         public async Task<ActionResult<Categoria>> POST (Categoria categoria) {
             try {
                 // Tratamos contra ataques de SQL Injection
-                await _repositorio.Salvar (categoria);
+               await _repositorio.Salvar (categoria);
                return categoria;
 
             } catch (DbUpdateConcurrencyException) {
