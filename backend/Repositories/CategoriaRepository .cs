@@ -17,14 +17,14 @@ namespace backend.Repositories {
             using (GufosContext _context = new GufosContext ()) {
                 return await _context.Categoria.FindAsync (id);
             }
-        }
+        }   
         public async Task<Categoria> Excluir (Categoria categoria) {
             using (GufosContext _context = new GufosContext ()) {
                 _context.Categoria.Remove (categoria);
                 await _context.SaveChangesAsync ();
                 return categoria;
             }
-        }
+        }   
         public async Task<List<Categoria>> Listar () {
             using (GufosContext _context = new GufosContext ()) {
                 return await _context.Categoria.ToListAsync ();

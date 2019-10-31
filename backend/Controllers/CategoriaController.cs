@@ -35,6 +35,16 @@ namespace backend.Controllers {
             }
             return categoria;
         }
+        // GET: api/Categoria/2
+        [HttpGet ("{nome}")]
+        public async Task<ActionResult<Categoria>> Get (string nome) {
+            // FindAsync = procura algo específico no banco
+            var categoria = await _repositorio.Listar().Contains(nome);
+            if (categoria == null) {
+                return NotFound();
+            }
+            return categoria;
+        }
         // POST api/Categoria
         [HttpPost]
         public async Task<ActionResult<Categoria>> POST (Categoria categoria) {
