@@ -57,13 +57,12 @@ namespace backend
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        }
-        public Startup(IConfiguration configuration)
-        {
-            this.Configuration = configuration;
-
-        }
+        }   
+        
+        //para habilitar o cors
+        readonly string PermissaoEntreOrigens = "_PermissaoEntreOrigens";
         public IConfiguration Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -96,14 +95,17 @@ namespace backend
                     };
                 });
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
-            });
-        }
+             //habilitação do cors
+            // services.AddCors (options => {
+            //     options.AddPolicy (PermissaoEntreOrigens,
+            //         builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            //     });
+            // }
+            services.AddCors (options => {
+                    options.AddPolicy (PermissaoEntreOrigens,
+                        builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                });
+            }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -112,6 +114,7 @@ namespace backend
             {
                 app.UseDeveloperExceptionPage();
             }
+            
             // Usamos efetivamente o SWAGGER
             app.UseSwagger();
             // Especificamos o EndPoint na aplicação
@@ -126,8 +129,8 @@ namespace backend
             app.UseAuthentication();
 
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
-
-            app.UseHttpsRedirection();
+            
+                // app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -136,7 +139,10 @@ namespace backend
             app.UseEndpoints(endpoints => // mapeando endpoints
             {
                 endpoints.MapControllers();
+                
             });
+             
+            
         }
     }
 }

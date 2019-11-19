@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using backend.Domains;
 using backend.Interfaces;
@@ -17,14 +18,19 @@ namespace backend.Repositories {
             using (GufosContext _context = new GufosContext ()) {
                 return await _context.Categoria.FindAsync (id);
             }
-        }   
+        }
+         public async Task<Categoria> BuscarPorNome (string nome) {
+            using (GufosContext _context = new GufosContext ()) {
+                return await _context.Categoria.FindAsync (nome);
+            }
+        }
         public async Task<Categoria> Excluir (Categoria categoria) {
             using (GufosContext _context = new GufosContext ()) {
                 _context.Categoria.Remove (categoria);
                 await _context.SaveChangesAsync ();
                 return categoria;
             }
-        }   
+        }
         public async Task<List<Categoria>> Listar () {
             using (GufosContext _context = new GufosContext ()) {
                 return await _context.Categoria.ToListAsync ();
@@ -36,6 +42,16 @@ namespace backend.Repositories {
                 await _context.SaveChangesAsync ();
                 return categoria;
             }
+        }
+
+        Task<Evento> ICategoria.BuscarPorId(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        Task<Evento> ICategoria.BuscarPorNome(string nome)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

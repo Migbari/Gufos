@@ -22,3 +22,5 @@ namespace backend.Domains
         public virtual ICollection<Evento> Evento { get; set; }
     }
 }
+
+

@@ -27,11 +27,6 @@ namespace backend.Repositories {
             }
         }
 
-        public Task<Presenca> Excluir(Presenca presenca)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public async Task<List<Localizacao>> Listar () {
             using (GufosContext _context = new GufosContext ()) {
                 return await _context.Localizacao.ToListAsync ();
