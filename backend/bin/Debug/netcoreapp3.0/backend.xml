@@ -10,5 +10,52 @@
             </summary>
             <returns>Lista de eventos</returns>
         </member>
+        <member name="M:backend.Interfaces.ICategoria.Listar">
+            <summary>
+            Lista todas as categorias
+            </summary>
+            <returns>Retorna uma lista de categorias</returns>
+        </member>
+        <member name="M:backend.Interfaces.ICategoria.BuscarPorId(System.Int32)">
+            <summary>
+            Busca uma categoria através do seu ID
+            </summary>
+            <param name="id">Identificador específico da categoria</param>
+            <returns>Retorna uma categoria buscada</returns>
+        </member>
+        <member name="M:backend.Interfaces.ICategoria.Salvar(backend.Domains.Categoria)">
+            <summary>
+            Cadastra uma nova categoria
+            </summary>
+            <param name="categoria">Objeto categoria com os dados que serão cadastrados</param>
+            <returns>Retorna uma categoria cadastrada</returns>
+        </member>
+        <member name="M:backend.Interfaces.ICategoria.Alterar(backend.Domains.Categoria)">
+            <summary>
+            Altera uma categoria existente
+            </summary>
+            <param name="categoria">Objeto categoria com os dados que serão atualizados</param>
+            <returns>Retorna uma categoria atualizada</returns>
+        </member>
+        <member name="M:backend.Interfaces.ICategoria.Excluir(backend.Domains.Categoria)">
+            <summary>
+            Deleta uma categoria existente
+            </summary>
+            <param name="categoria">Objeto categoria com os dados que serão deletados</param>
+            <returns>Retorna uma categoria deletada</returns>
+        </member>
+        <member name="M:backend.Interfaces.ICategoria.FiltrarPorNome(backend.ViewModel.FiltroViewModel)">
+            <summary>
+            Lista todas as categorias que atendem ao filtro
+            </summary>
+            <param name="filtro">Filtro que será aplicado na busca</param>
+            <returns>Retorna uma lista de categorias filtradas</returns>
+        </member>
+        <member name="M:backend.Interfaces.ICategoria.Ordenar">
+            <summary>
+            Lista todas as categorias de forma ordenada
+            </summary>
+            <returns>Retorna uma lista de categorias ordenada</returns>
+        </member>
     </members>
 </doc>

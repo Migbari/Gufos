@@ -3,55 +3,71 @@ using System.Linq;
 using System.Threading.Tasks;
 using backend.Domains;
 using backend.Interfaces;
+using backend.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repositories {
     public class CategoriaRepository : ICategoria {
-        public async Task<Categoria> Alterar (Categoria categoria) {
-            using (GufosContext _context = new GufosContext ()) {
-                _context.Entry (categoria).State = EntityState.Modified;
-                await _context.SaveChangesAsync ();
-            }
+       // Cria uma instância do contexto para chamada dos métodos do EF Core
+        GufosContext _contexto = new GufosContext();
+        public async Task<Categoria> Alterar(Categoria categoria)
+        {
+            // Comparamos os atributos que foram modificados através do EF
+            _contexto.Entry(categoria).State = EntityState.Modified;
+            await _contexto.SaveChangesAsync();
             return categoria;
         }
-        public async Task<Categoria> BuscarPorId (int id) {
-            using (GufosContext _context = new GufosContext ()) {
-                return await _context.Categoria.FindAsync (id);
-            }
-        }
-         public async Task<Categoria> BuscarPorNome (string nome) {
-            using (GufosContext _context = new GufosContext ()) {
-                return await _context.Categoria.FindAsync (nome);
-            }
-        }
-        public async Task<Categoria> Excluir (Categoria categoria) {
-            using (GufosContext _context = new GufosContext ()) {
-                _context.Categoria.Remove (categoria);
-                await _context.SaveChangesAsync ();
-                return categoria;
-            }
-        }
-        public async Task<List<Categoria>> Listar () {
-            using (GufosContext _context = new GufosContext ()) {
-                return await _context.Categoria.ToListAsync ();
-            }
-        }
-        public async Task<Categoria> Salvar (Categoria categoria) {
-            using (GufosContext _context = new GufosContext ()) {
-                await _context.AddAsync (categoria);
-                await _context.SaveChangesAsync ();
-                return categoria;
-            }
+
+        public async Task<Categoria> BuscarPorID(int id)
+        {
+            // FindAsync procura algo específico no banco
+            return await _contexto.Categoria.FindAsync(id);
         }
 
-        Task<Evento> ICategoria.BuscarPorId(int id)
+        public Task<Categoria> BuscarPorId(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        Task<Evento> ICategoria.BuscarPorNome(string nome)
+        public async Task<Categoria> Excluir(Categoria categoria)
         {
-            throw new System.NotImplementedException();
+            _contexto.Categoria.Remove(categoria);
+            await _contexto.SaveChangesAsync();
+            return categoria;
         }
+
+        public List<Categoria> FiltrarPorNome(FiltroViewModel filtro)
+        {
+            // Lista categorias que comecem com o filtro inserido
+            // List<Categoria> categorias = _contexto.Categoria.Where(c => c.Titulo.StartsWith(filtro.Palavra)).ToList();
+
+            // Lista categorias que contenham o filtro inserido em qualquer lugar do Titulo
+            List<Categoria> categorias = _contexto.Categoria.Where(c => c.Titulo.Contains(filtro.Palavra)).ToList();
+
+            return categorias;
+        }
+
+        public async Task<List<Categoria>> Listar()
+        {
+            return await _contexto.Categoria.ToListAsync();
+        }
+
+        public List<Categoria> Ordenar()
+        {
+            List <Categoria> categorias = _contexto.Categoria.OrderByDescending(c => c.Titulo).ToList();
+
+            return categorias;
+        }
+
+        public async Task<Categoria> Salvar(Categoria categoria)
+        {
+            // Tratamento contra ataques SQL Injection
+            await _contexto.AddAsync(categoria);
+
+            // Salva o objeto no banco
+            await _contexto.SaveChangesAsync();
+            return categoria;
+        }
+
     }
 }

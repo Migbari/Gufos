@@ -1,40 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Miguel\\Desktop\\Gufos\\backend\\backend.csproj": {}
+    "C:\\Users\\fic\\Desktop\\Gufos_Back\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Miguel\\Desktop\\Gufos\\backend\\backend.csproj": {
+    "C:\\Users\\fic\\Desktop\\Gufos_Back\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Miguel\\Desktop\\Gufos\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\fic\\Desktop\\Gufos_Back\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\Miguel\\Desktop\\Gufos\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\Miguel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Miguel\\Desktop\\Gufos\\backend\\obj\\",
+        "projectPath": "C:\\Users\\fic\\Desktop\\Gufos_Back\\backend\\backend.csproj",
+        "packagesPath": "C:\\Users\\fic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fic\\Desktop\\Gufos_Back\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-<<<<<<< HEAD
           "C:\\Users\\fic\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-=======
-          "C:\\Users\\Miguel\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> 4b003e67f30f6770b5045955881cb515357cc773
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.2"
+          "netcoreapp3.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.2": {
+          "netcoreapp3.0": {
             "projectReferences": {}
           }
         },
@@ -45,31 +41,25 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.2": {
+        "netcoreapp3.0": {
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[2.2.301, )"
+              "version": "[3.0.0, )"
             },
             "Microsoft.AspNetCore.MVC.NewtonsoftJson": {
               "target": "Package",
-              "version": "[2.2.301, )"
+              "version": "[3.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.2.301, )"
+              "version": "[3.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[2.2.301, )"
-            },
-            "Microsoft.NETCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )",
-              "autoReferenced": true
+              "version": "[3.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -77,10 +67,24 @@
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
